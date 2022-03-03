@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
@@ -32,17 +33,29 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
     override fun getItemCount() = movies.size
 
 
-     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView), View.OnClickListener {
 
          private val ivPoster = itemView.findViewById<ImageView>(R.id.ivPoster)
          private val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
          private val tvOverview = itemView.findViewById<TextView>(R.id.tvOverview)
+
+         init {
+             itemView.setOnClickListener(this)
+         }
 
          fun bind(movie: Movie) {
              tvTitle.text = movie.title
              tvOverview.text = movie.overview
              Glide.with(context).load(movie.posterImageUrl). into(ivPoster)
 
+         }
+
+         override fun onClick(p0: View?) {
+             // 1. Get notified of the particular movie which was clicked
+             val movie = movies[adapterPosition]
+             Toast.makeText(context, movie.title, Toast.LENGTH_SHORT). show()
+
+             // 2. Use the intent system to navigate to the new activity
          }
      }
 }
