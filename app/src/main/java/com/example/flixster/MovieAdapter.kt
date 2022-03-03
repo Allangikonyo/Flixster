@@ -1,6 +1,7 @@
 package com.example.flixster
 
 import android.content.Context
+import android.content.Intent
 import android.nfc.Tag
 import android.util.Log
 import android.view.LayoutInflater
@@ -56,6 +57,10 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
              Toast.makeText(context, movie.title, Toast.LENGTH_SHORT). show()
 
              // 2. Use the intent system to navigate to the new activity
+             val intent = Intent(context, DetailActivity:: class.java)
+             context.startActivity(intent)
          }
      }
+
+
 }
