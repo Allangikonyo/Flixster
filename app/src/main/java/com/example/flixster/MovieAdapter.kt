@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 
+const val MOVIE_EXTRA = "MOVIE_EXTRA"
 private const val TAG = "MovieAdapter"
 class MovieAdapter(private val context: Context, private val movies: List<Movie>)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
@@ -54,10 +55,12 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
          override fun onClick(p0: View?) {
              // 1. Get notified of the particular movie which was clicked
              val movie = movies[adapterPosition]
-             Toast.makeText(context, movie.title, Toast.LENGTH_SHORT). show()
+
+//             Toast.makeText(context, movie.title, Toast.LENGTH_SHORT). show()
 
              // 2. Use the intent system to navigate to the new activity
              val intent = Intent(context, DetailActivity:: class.java)
+             intent.putExtra(MOVIE_EXTRA, movie)
              context.startActivity(intent)
          }
      }
