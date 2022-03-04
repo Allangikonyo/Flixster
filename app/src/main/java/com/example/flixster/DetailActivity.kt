@@ -38,7 +38,7 @@ class DetailActivity : YouTubeBaseActivity() {
         ratingBar.rating = movie.voteAverage.toFloat()
 
         val client = AsyncHttpClient()
-        client.get(TRAILER_URL.format(movie.movieId), object: JsonHttpResponseHandler() {
+        client.get(TRAILER_URL.format(movie.movieId), object : JsonHttpResponseHandler() {
             override fun onFailure(
                 statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?
             ) {
@@ -59,25 +59,27 @@ class DetailActivity : YouTubeBaseActivity() {
             }
 
         })
-            ytPlayerView.initialize(YOUTUBE_API_KEY, object: YouTubePlayer.OnInitializedListener {
-            override fun onInitializationSuccess(
-                provider: YouTubePlayer.Provider?,
-                player: YouTubePlayer?,
-                p2: Boolean
-            ) {
-                Log.i(TAG, "onInitializationSuccess")
-                player?.cueVideo("5xVh-7ywKpE");
-            }
 
-            override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Log.i(TAG, "onInitializationFailure")
-            }
-
-        })
     }
+//            ytPlayerView.initialize(YOUTUBE_API_KEY, object: YouTubePlayer.OnInitializedListener {
+//            override fun onInitializationSuccess(
+//                provider: YouTubePlayer.Provider?,
+//                player: YouTubePlayer?,
+//                p2: Boolean
+//            ) {
+//                Log.i(TAG, "onInitializationSuccess")
+//                player?.cueVideo("5xVh-7ywKpE");
+//            }
+//
+//            override fun onInitializationFailure(
+//                p0: YouTubePlayer.Provider?,
+//                p1: YouTubeInitializationResult?
+//            ) {
+//                Log.i(TAG, "onInitializationFailure")
+//            }
+//
+//        })
+//    }
 
     private fun initializeYoutube(youtubeKey: String) {
         ytPlayerView.initialize(YOUTUBE_API_KEY, object: YouTubePlayer.OnInitializedListener {
